@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SoluRH</title>
+
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        /* Fonte geral */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #1d1a00;
+            color: #1a1a1a;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #d00f0f;
+            padding: 15px 35px;
+            display: flex;
+            flex-wrap: wrap;
+            box-shadow: 0 20px 40px rgba(16, 16, 16, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: rgb(252, 214, 214);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            position: relative;
+            transition: color 0.5s ease;
+        }
+
+        nav ul li a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 6px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 4px;
+            bottom: -4px;
+            left: 0;
+            background-color: #4dff00;
+            transition: width 0.5s;
+        }
+
+        nav ul li a:hover {
+            color: #84ff00;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Conteúdo principal */
+        .welcome {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 40px;
+            background-color: #fffded;
+            border-radius: 22px;
+            text-align: center;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+        }
+
+        .welcome h1 {
+            font-size: 40px;
+            color: #ff003c;
+            margin-bottom: 15px;
+        }
+
+        .welcome p {
+            font-size: 17px;
+            color: #666;
+        }
+
+        .welcome hr {
+            border: none;
+            border-top: 1px solid #dad8ce;
+            margin: 30px 0;
+        }
+
+        .welcome h3 {
+            color: #ff0044;
+            margin-bottom: 15px;
+        }
+
+        .welcome ul {
+            list-style: none;
+            padding: 0;
+            max-width: 610px;
+            margin: 0 auto;
+            color: #444;
+            text-align: left;
+        }
+
+        .welcome ul li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .welcome ul li img {
+            margin-right: 10px;
+            width: 24px;
+            height: 24px;
+            filter: invert(29%) sepia(87%) saturate(4951%) hue-rotate(231deg) brightness(98%) contrast(101%);
+        }
+
+        .welcome p.quote {
+            margin-top: 20px;
+            font-style: italic;
+            color: #ee5700;
+            font-weight: 600;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 13px;
+                margin-top: 15px;
+            }
+
+            nav ul li a {
+                width: 100%;
+                padding: 13px 0;
+            }
+
+            .welcome {
+                margin: 60px 20px;
+                padding: 30px 20px;
+            }
+
+            .welcome h1 {
+                font-size: 28px;
+            }
+
+            .welcome p,
+            .welcome h3 {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li>
+            <a href="index.html" >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/home.png" alt="Home" />
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'registro' %}">
+                <img src="https://img.icons8.com/?size=100&id=ehXjpXnwxNWv&format=png&color=000000" alt="Registro do candidato" />
+                Registro do candidato
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/?size=100&id=90YZoKmeSJNC&format=png&color=000000" alt="Registro da empresa" />
+                Registro da empresa
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/calendar.png" alt="Perfil do candidato" />
+                Perfil do candidato
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/?size=100&id=e9femSksvyZL&format=png&color=000000" alt="Perfil da empresa" />
+                perfil da empresa
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/?size=100&id=HvKJqsSoQuPw&format=png&color=000000" alt="Vagas" />
+                Vagas
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/star.png" alt="Candidatura" />
+                Candidatura
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/?size=100&id=g3YMw7LYW7Kp&format=png&color=000000" alt="chat" />
+                Chat
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/feedback.png" alt="Feedback" />
+                Feedback
+            </a>
+        </li>
+    </ul>
+</nav>
+
+<section class="welcome">
+    <h1>Olá, bem vindo ao SoluRH</h1>
+    <p>Aqui vamos te apresentar uma solução moderna e prática para recrutamento!</p>
+    <hr />
+    <h3>Segue abaixo os recursos que tornam o processo de recrutamento mais eficiente:</h3>
+    <ul>
+        <li>
+            <img src="https://img.icons8.com/?size=100&id=83145&format=png&color=000000" alt="Cadastro de Candidatos" />
+            Crie seu perfil em minutos: insira seu nome, e-mail, senha e envie seu currículo diretamente pela plataforma. Comece sua jornada profissional com praticidade e segurança.
+        </li>
+        <li>
+            <img src="https://img.icons8.com/?size=100&id=83145&format=png&color=000000" alt="Dicas de Carreira" />
+            Receba conteúdos personalizados com orientações de carreira, estratégias para entrevistas e dicas de desenvolvimento. Tudo isso para impulsionar seu crescimento.
+        </li>
+        <li>
+            <img src="https://img.icons8.com/?size=100&id=83145&format=png&color=000000" alt="Atualização de Perfil" />
+            Mantenha suas informações sempre atualizadas: experiências, habilidades e objetivos. Seu perfil evolui com você — e se adapta às oportunidades do mercado.
+        </li>
+        <li>
+            <img src="https://img.icons8.com/?size=100&id=83145&format=png&color=000000" alt="Vagas Filtradas" />
+            Encontre vagas que se alinham ao seu perfil com base em filtros inteligentes. Menos tempo buscando, mais tempo encontrando a oportunidade ideal.
+        </li>
+        <li>
+            <img src="https://img.icons8.com/?size=100&id=83145&format=png&color=000000" alt="Candidatura Ágil" />
+            Candidate-se às vagas com apenas alguns cliques. Simples, direto e eficaz — sem complicações ou etapas desnecessárias.
+        </li>
+        <li>
+            <img src="https://img.icons8.com/?size=100&id=83145&format=png&color=000000" alt="Chat com Empresas" />
+            Utilize o chat integrado para conversar diretamente com recrutadores e empresas. A comunicação rápida aproxima talentos das oportunidades reais.
+        </li>
+        <li>
+            <img src="https://img.icons8.com/?size=100&id=83145&format=png&color=000000" alt="Gestão de Vagas" />
+            Empresas podem gerenciar seus perfis, publicar vagas, acompanhar candidaturas e realizar triagens com mais agilidade e organização.
+        </li>
+        <li>
+            <img src="https://img.icons8.com/?size=100&id=83145&format=png&color=000000" alt="Login Seguro" />
+            Mantenha seus dados protegidos com o sistema de autenticação para candidatos e empresas. Segurança digital é prioridade.
+        </li>
+    </ul>
+    <p class="quote">“Tecnologia que conecta. Processo que transforma. O futuro do recrutamento começa aqui.”</p>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

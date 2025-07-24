@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Registro dos candidatos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+<style>
+    section {
+        background-color: white;
+    }
+        /* Reset básico */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        /* Fonte geral */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #1d1a00;
+            color: #1a1a1a;
+        }
+
+        /* Navbar */
+        nav {
+            background-color: #d00f0f;
+            padding: 15px 35px;
+            display: flex;
+            flex-wrap: wrap;
+            box-shadow: 0 20px 40px rgba(16, 16, 16, 0.1);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: rgb(252, 214, 214);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            font-size: 16px;
+            padding: 5px 10px;
+            border-radius: 15px;
+            position: relative;
+            transition: color 0.5s ease;
+        }
+
+        nav ul li a img {
+            width: 20px;
+            height: 20px;
+            margin-right: 6px;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0%;
+            height: 4px;
+            bottom: -4px;
+            left: 0;
+            background-color: #4dff00;
+            transition: width 0.5s;
+        }
+
+        nav ul li a:hover {
+            color: #84ff00;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        /* Responsividade */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            nav ul {
+                flex-direction: column;
+                width: 100%;
+                gap: 13px;
+                margin-top: 15px;
+            }
+            nav ul li a {
+                width: 100%;
+                padding: 13px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li>
+            <a href="{% url 'index' %}" >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/home.png" alt="Home" />
+                Home
+            </a>
+        </li>
+        <li>
+            <a href="{% url 'registro' %}">
+                <img src="https://img.icons8.com/?size=100&id=ehXjpXnwxNWv&format=png&color=000000" alt="Registro do candidato" />
+                Registro do candidato
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/?size=100&id=90YZoKmeSJNC&format=png&color=000000" alt="Registro da empresa" />
+                Registro da empresa
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/calendar.png" alt="Perfil do candidato" />
+                Perfil do candidato
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/?size=100&id=e9femSksvyZL&format=png&color=000000" alt="Perfil da empresa" />
+                perfil da empresa
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/?size=100&id=HvKJqsSoQuPw&format=png&color=000000" alt="Vagas" />
+                Vagas
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/star.png" alt="Candidatura" />
+                Candidatura
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/?size=100&id=g3YMw7LYW7Kp&format=png&color=000000" alt="chat" />
+                Chat
+            </a>
+        </li>
+        <li>
+            <a href="#" >
+                <img src="https://img.icons8.com/ios-filled/24/ffffff/feedback.png" alt="Feedback" />
+                Feedback
+            </a>
+        </li>
+    </ul>
+</nav>
+{% if messages %}
+  
+    {% for m in messages %} 
+   {{m.tags}}
+    <div class="alert {{ m.tags }}" role="alert">{{m}}</div>
+
+    {% endfor  %}
+{% endif %}
+<section class="container dieta-table p-4">
+    <h1 class="mb-4 text-center" style="color:#b30000;">Registro do Candidato:</h1>
+    <h4 style="color: #b30000;">Preencha os dados corretamente:</h4>
+
+    <form method="POST" enctype="multipart/form-data" action="{% url 'registrar' %}">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_nome" class="form-label">Nome Completo</label>
+            <input type="text" name="nome">
+        </div>
+        <div class="mb-3">
+            <label for="id_email" class="form-label">E-mail</label>
+            <input type="text" name="email">
+        </div>
+        <div class="mb-3">
+            <label for="id_senha" class="form-label">Senha</label>
+                     <input type="text" name="password">
+
+        </div>
+        <div class="mb-3">
+            <label for="id_curriculo" class="form-label">Currículo </label>
+            <textarea name="curriculo" id=""></textarea>
+
+        </div>
+
+        <button type="submit" class="btn btn-primary">Registrar</button>
+    </form>
+</section>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
